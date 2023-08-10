@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Greeting App</title>
+    <link rel="stylesheet" href="/css/skeleton.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+    <h1>Greeting App</h1>
+
+    <form method="POST" action="/greeting">
+      <label for="name">Enter Name:</label>
+      <input type="text" id="name" name="name" required />
+      <br />
+      <label>Choose a language:</label>
+      <input type="radio" name="language" value="english" />
+      English
+      <input type="radio" name="language" value="xhosa" />
+      IsiXhosa
+      <input type="radio" name="language" value="french" />
+      French
+
+      <br />
+      <button class="button" type="submit">Greet</button>
+    </form>
+    <div><h3>{{makeGreet}}</h3></div>
+ 
+
+    </div>
+
+  </body>
+</html>
