@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import flash from 'express-flash';
 import session from 'express-session';
 
-const app =express();
+const app = express();
 const greeting = greet()
 
 app.engine('handlebars', engine({
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(session({
-    resave: false, 
+    resave: false,
     saveUninitialized: true,
     secret: "Asiphe's"
 
@@ -28,28 +28,32 @@ app.use(session({
 app.use(flash())
 
 app.get('/', function (req, res) {
+    let errorMesg = req.flash("error")[0];
+    let greetMesg = req.flash("info")[0]
+    let showGreet = !errorMesg;
     res.render('index', {
-        makeGreet : req.flash("info")[0]
-        
+        counting: greeting.countingNames(),
+        makeGreet: showGreet ? greetMesg : "",
+        errorHandling: errorMesg
+
     });
 });
-app.post('/greeting', function (req, res){
-    var greetingMesg=  greeting.makeGreet(req.body.name, req.body.language)
-    req.flash('info', greetingMesg);
+app.post('/greeting', function (req, res) {
+
+    var greetingMesg = greeting.makeGreet(req.body.name, req.body.language)
+    let greetMe = greeting.getNames()
+    req.flash('info', greetMe);
+
+    let counting = greeting.countingNames()
+    const errors = greeting.errorHandling(req.body.name, req.body.language)
+    req.flash('error', errors);
     res.redirect("/")
 })
 
+app.post('/errorHandling', function (req, res) {
 
-let greetingCount = 0;
-
-app.get("/greeting-count", (req, res) => {
-    res.json({ count: greetingCount });
-});
-
-app.post("/increment-count", (req, res) => {
-    greetingCount++;
-    res.json({ success: true });
-});
+    res.redirect("/")
+})
 
 
 const PORT = process.env.PORT || 3011;
