@@ -15,6 +15,22 @@
      cursor: pointer;
    
   }
+  h1{
+    padding-bottom: 0.5em;
+  }
+  .greeting-message {
+    margin-top: 20px;
+    font-size: 30px;
+    
+}
+  .error-message {
+	background: #fcc;
+	color:red;
+	border: 1px solid red;
+	border-radius: 0.25rem;
+	margin-inline: auto;
+	padding: 0.25rem 0.5rem;
+}
   body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -29,11 +45,8 @@
     margin-top: 100px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
-/* .button {
-   
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    /* border-radius: 5px; */
+.names{
+    text-align: center;
+    justify-content: center;
+}
    

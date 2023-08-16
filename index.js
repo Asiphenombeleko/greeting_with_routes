@@ -32,26 +32,37 @@ app.get('/', function (req, res) {
     let greetMesg = req.flash("info")[0]
     let showGreet = !errorMesg;
     res.render('index', {
-        counting: greeting.countingNames(),
+        counting: greeting.getNumberOfNames(),
         makeGreet: showGreet ? greetMesg : "",
         errorHandling: errorMesg
 
     });
 });
 app.post('/greeting', function (req, res) {
-
     var greetingMesg = greeting.makeGreet(req.body.name, req.body.language)
     let greetMe = greeting.getNames()
+    // console.log(greeting.getNameCounter())
     req.flash('info', greetMe);
 
-    let counting = greeting.countingNames()
+    let counting = greeting.getNumberOfNames()
     const errors = greeting.errorHandling(req.body.name, req.body.language)
     req.flash('error', errors);
     res.redirect("/")
 })
 
-app.post('/errorHandling', function (req, res) {
+app.get('/counter/:username', function (req, res) {
+    res.render('counter', {
+        count: greeting.userCount(req.params.username),
+        user: req.params.username
+    })
+})
+app.get('/greeted', function (req, res) {
+    res.render('greeted', {
+        listOfNames: greeting.getNameCounter()
+    })
+})
 
+app.post('/errorHandling', function (req, res) {
     res.redirect("/")
 })
 

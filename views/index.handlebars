@@ -23,11 +23,11 @@
       <br />
       <button class="button" type="submit">Greet</button>
     </form>
-    <div><h3>{{makeGreet}}</h3></div>
-
-    <div><h5>{{errorHandling}}</h5></div>
+    <div><h3 class="greeting-message">{{makeGreet}}</h3></div>
+    {{#if errorHandling}}<h5><p class="error-message">{{errorHandling}}</p></h5>{{/if}}
       <div class="counter"><h2>{{counting}}</h2></div>
+<div class="names"><h5><a href="/greeted">Greeted Users</a></h5></div>
+    
     </div>
-
   </body>
 </html>

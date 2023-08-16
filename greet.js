@@ -1,15 +1,16 @@
 export default function greet() {
-  var greetedNames = [];
-  var nameRegex = /^[a-zA-Z\s]+$/;
+  let greetedNames = [];
+  let nameRegex = /^[a-zA-Z\s]+$/;
   let greetMe = "";
-  var counter = 0;
+  let userNames = {}
+  let theCounter = 0;
 
   function makeGreet(names, languages) {
     if (nameRegex) {
       let named = names.charAt(0).toUpperCase();
       let newName = names.slice(1).toLowerCase();
       let newNames = named + newName;
-
+      // console.log(newNames);
       namesGreeted(newNames);
 
       if (languages === "english") {
@@ -30,33 +31,46 @@ export default function greet() {
   }
 
   function namesGreeted(name) {
-
-      if (greetedNames.includes(name) === false &&  nameRegex.test(name) === true)   {
-        greetedNames.push(name);
-      }
+    if(userNames[name]  && nameRegex.test(name) === true){
+      userNames[name] += 1
     }
-
-  function countingNames() {
-    return greetedNames.length;
+    else{
+      userNames[name]=1
+      console.log(userNames);
+    }
+    
   }
+
+  
   function reset() {
     localStorage.clear();
     location.reload();
     return "";
   }
 
-  function listOfNamesGreeted() {
-    if(nameRegex){
+  
+  function getNameCounter() {
 
+    let personList = Object.keys(userNames)
+    return personList;
+  }
+  function getNumberOfNames() {
+    let numberOfNames = Object.keys(userNames).length
+    return numberOfNames;
+  }
+
+  function userCount(name) {
+    for (const user in userNames) {
+      if (user === name) {
+        const element = userNames[user];
+        return element;
+      }
     }
-    return greetedNames;
   }
 
   function errorHandling(names, languages) {
 
-    console.log(names, languages);
-
-    var message = "";
+    let message = "";
 
     if (!names && !languages) {
 
@@ -86,11 +100,13 @@ export default function greet() {
 
   return {
     makeGreet,
-    countingNames,
     namesGreeted,
-    listOfNamesGreeted,
     reset,
     errorHandling,
-    getNames
+    getNames,
+    counter,
+    getNameCounter,
+    getNumberOfNames,
+    userCount
   };
 }

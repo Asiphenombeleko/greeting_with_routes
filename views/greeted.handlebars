@@ -1,0 +1,9 @@
+<div class="greetedNames">
+	<h2>Greeted Users</h2>
+{{!-- call the list of of names that have numbers --}}
+	{{#each listOfNames}} 
+	<div><a href="/counter/{{this}}">{{this}}</a></div>
+	{{/each}}
+
+
+</div>
