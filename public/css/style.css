@@ -32,6 +32,9 @@
 	padding: 0.25rem 0.5rem;
 }
   body {
+    background-image: url("https://i.pinimg.com/originals/b4/d2/16/b4d216c7394cc6d31486909d845e281b.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
