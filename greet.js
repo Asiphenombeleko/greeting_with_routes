@@ -1,17 +1,17 @@
-export default function greet() {
+export default function greet(db) {
   let greetedNames = [];
   let nameRegex = /^[a-zA-Z\s]+$/;
   let greetMe = "";
   let userNames = {}
   let theCounter = 0;
 
-  function makeGreet(names, languages) {
+  async function makeGreet(names, languages) {
     if (nameRegex) {
       let named = names.charAt(0).toUpperCase();
       let newName = names.slice(1).toLowerCase();
       let newNames = named + newName;
       // console.log(newNames);
-      namesGreeted(newNames);
+      await namesGreeted(newNames);
 
       if (languages === "english") {
         greetMe = "Hello " + newNames;
@@ -26,47 +26,55 @@ export default function greet() {
 
 
   }
-  function getNames() {
+  function getGreetings() {
     return greetMe
   }
 
-  function namesGreeted(name) {
-    if(userNames[name]  && nameRegex.test(name) === true){
-      userNames[name] += 1
-    }
-    else{
-      userNames[name]=1
-      console.log(userNames);
-    }
-    
-  }
+  async function namesGreeted(name) {
+    let nameValidation = nameRegex.test(name);
+    if (nameValidation) {
 
-  
-  function reset() {
-    localStorage.clear();
-    location.reload();
+      let nameCheck = await db.oneOrNone('SELECT * FROM greettable where name = $1', [name])
+      console.log(nameCheck);
+      if (nameCheck == null) {
+        await db.none('INSERT into greettable (name ,counter)values ($1, $2)', [name, 1])
+      }
+      else {
+        await db.none('UPDATE greettable set counter = counter+1 where name =$1', [name])
+        console.log(userNames);
+      }
+
+    }
     return "";
   }
 
+
+  async function reset() {
+    await db.none('DELETE FROM greettable')
+
+  }
+
+
+
+  async function getNameCounter() {
+
+    let counter = await db.one('SELECT count(*) FROM greettable')
+    console.log(counter);
+    return counter.count;
+  }
+
+  async function getUserCount(name) {
+    let count = await db.one('SELECT counter FROM greettable WHERE name = $1', [name]);
+
+    return count.counter;
+  }
+  async function nameList(){
+
+    let list = await db.manyOrNone('SELECT name FROM greettable');
+    return list;
+  }
+
   
-  function getNameCounter() {
-
-    let personList = Object.keys(userNames)
-    return personList;
-  }
-  function getNumberOfNames() {
-    let numberOfNames = Object.keys(userNames).length
-    return numberOfNames;
-  }
-
-  function userCount(name) {
-    for (const user in userNames) {
-      if (user === name) {
-        const element = userNames[user];
-        return element;
-      }
-    }
-  }
 
   function errorHandling(names, languages) {
 
@@ -103,10 +111,10 @@ export default function greet() {
     namesGreeted,
     reset,
     errorHandling,
-    getNames,
+    getGreetings,
     counter,
     getNameCounter,
-    getNumberOfNames,
-    userCount
+    getUserCount,
+    nameList
   };
 }

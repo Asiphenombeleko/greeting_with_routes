@@ -1,16 +1,18 @@
 <html>
-  <head>
-    <title>Greeting App</title>
-    <link rel="stylesheet" href="/css/skeleton.css" />
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <div class="container">
+
+<head>
+  <title>Greeting App</title>
+  <link rel="stylesheet" href="/css/skeleton.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="container">
     <h1>Greeting App</h1>
 
     <form method="POST" action="/greeting">
       <label for="name">Enter Name:</label>
-      <input type="text" id="name" name="name"/>
+      <input type="text" id="name" name="name" />
       <br />
       <label>Choose a language:</label>
       <input type="radio" name="language" value="english" />
@@ -22,12 +24,29 @@
 
       <br />
       <button class="button" type="submit">Greet</button>
+
     </form>
-    <div><h3 class="greeting-message">{{makeGreet}}</h3></div>
-    {{#if errorHandling}}<h5><p class="error-message">{{errorHandling}}</p></h5>{{/if}}
-      <div class="counter"><h2>{{counting}}</h2></div>
-<div class="names"><h5><a href="/greeted">Greeted Users</a></h5></div>
-    
+    <form action="/reset" method="post">
+      <button class="button" type="submit">Reset</button>
+    </form>
+    <div>
+      <h3 class="greeting-message">{{makeGreet}}</h3>
     </div>
-  </body>
+    {{#if errorHandling}}<h5>
+      <p class="error-message">{{errorHandling}}</p>
+    </h5>{{/if}}
+
+    {{#if resetMesg}}<h5>
+      <p class="reset-message">{{resetMesg}}</p>
+    </h5>{{/if}}
+    <div class="counter">
+      <h2>{{counting}}</h2>
+    </div>
+    <div class="names">
+      <h5><a href="/greeted">Greeted Users</a></h5>
+    </div>
+
+  </div>
+</body>
+
 </html>
