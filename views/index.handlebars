@@ -1,74 +1,73 @@
 <html>
 
-<head>
-  <title>Greeting App</title>
-  <link rel="stylesheet" href="/css/skeleton.css" />
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
+  <head>
+    <title>Greeting App</title>
+    <link rel="stylesheet" href="/css/skeleton.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-<body>
-  <div class="container">
-    <h1>Greeting App</h1>
+  <body>
+    <div class="container">
+      <h1>Greeting App</h1>
 
-    <form method="POST" action="/greeting">
-      <label for="name">Enter Name:</label>
-      <input type="text" id="name" name="name" />
-      <br />
-      <label>Choose a language:</label>
-      <input type="radio" name="language" value="english" />
-      English
-      <input type="radio" name="language" value="xhosa" />
-      IsiXhosa
-      <input type="radio" name="language" value="french" />
-      French
+      <form method="POST" action="/greeting">
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" name="name" />
+        <br />
+        <label>Choose a language:</label>
+        <input type="radio" name="language" value="english" />
+        English
+        <input type="radio" name="language" value="xhosa" />
+        IsiXhosa
+        <input type="radio" name="language" value="french" />
+        French
 
-      <br />
-      <button class="button" type="submit">Greet</button>
+        <br />
+        <button class="button" type="submit">Greet</button>
 
-    </form>
-    <form action="/reset" method="post">
-      <button class="button" type="submit" onclick="return confirm('Are you sure you want to reset your data?')">Reset</button>
-    </form>
-    <div>
-      <script>
-        // Clear the greeting message after 3 seconds
-        setTimeout(function () {
-          document.querySelector('.greeting-message').style.display = 'none';
-        }, 3000);
-      </script>
-      <h3 class="greeting-message">{{makeGreet}}</h3>
+      </form>
+      <form action="/reset" method="post">
+        <button
+          class="button"
+          type="submit"
+          onclick="return confirm('Are you sure you want to reset your data?')"
+        >Reset</button>
+      </form>
+      <div>
+        
+        <h3 class="greeting-message">{{makeGreet}}</h3>
+      </div>
+      <div>
+        <script>
+          // Clear the error message after 3 seconds 
+          setTimeout(function () {
+          document.querySelector('.error-message').style.display = 'none'; },
+          3000);
+        </script>
+
+        {{#if errorHandling}}<h5>
+            <p class="error-message">{{errorHandling}}</p>
+          </h5>{{/if}}
+      </div>
+      <div>
+        <script>
+          // Clear the reset message after 3 seconds 
+          setTimeout(function () {
+          document.querySelector('.reset-message').style.display = 'none'; },
+          3000);
+        </script>
+        {{#if resetMesg}}<h5>
+            <p class="reset-message">{{resetMesg}}</p>
+          </h5>{{/if}}
+        <div class="counter">
+          <h2>{{counting}}</h2>
+        </div>
+      </div>
+      <div class="names">
+        <h5><a href="/greeted">Greeted Users</a></h5>
+      </div>
+
     </div>
-    <div>
-      <script>
-        // Clear the error message after 3 seconds
-        setTimeout(function () {
-          document.querySelector('.error-message').style.display = 'none';
-        }, 3000);
-      </script>
-
-      {{#if errorHandling}}<h5>
-        <p class="error-message">{{errorHandling}}</p>
-      </h5>{{/if}}
-    </div>
-    <div>
-      <script>
-        // Clear the reset message after 3 seconds
-        setTimeout(function () {
-          document.querySelector('.reset-message').style.display = 'none';
-        }, 3000);
-      </script>
-    {{#if resetMesg}}<h5>
-      <p class="reset-message">{{resetMesg}}</p>
-    </h5>{{/if}}
-    <div class="counter">
-      <h2>{{counting}}</h2>
-    </div>
-    </div>
-    <div class="names">
-      <h5><a href="/greeted">Greeted Users</a></h5>
-    </div>
-
-  </div>
-</body>
+  </body>
 
 </html>
