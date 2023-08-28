@@ -6,7 +6,7 @@ export default function greet(db) {
   let nameRegex = /^[a-zA-Z\s]+$/;
   let greetMe = "";
   let userNames = {};
-  let theCounter = 0;
+  // let theCounter = 0;
 
   async function makeGreet(names, languages) {
     if (nameRegex) {
@@ -14,7 +14,7 @@ export default function greet(db) {
       let newName = names.slice(1).toLowerCase();
       let newNames = named + newName;
       
-      namesGreeted(newNames);
+     await namesGreeted(newNames);
 
       if (languages === "english") {
         greetMe = "Hello " + newNames;
@@ -45,8 +45,8 @@ export default function greet(db) {
         await greetingDataBase.update(name);
       }
       //return the namecheck which is the variable that stores the names checked
-      return nameCheck;
     }
+    return nameValidation;
   }
 
   async function reset() {
@@ -55,7 +55,7 @@ export default function greet(db) {
 
   async function getNameCounter() {
     let counter = await greetingDataBase.getCounterNames();
-    return counter;
+    console.log(counter);
   }
 
   async function getUserCount(name) {
@@ -84,10 +84,10 @@ export default function greet(db) {
     }
     return message;
   }
-  function counter() {
-    if (greetMe) {
-    }
-  }
+  // function counter() {
+  //   if (greetMe) {
+  //   }
+  // }
 
   return {
     makeGreet,
@@ -95,7 +95,7 @@ export default function greet(db) {
     reset,
     errorHandling,
     getGreetings,
-    counter,
+    // counter,
     getNameCounter,
     getUserCount,
     nameList,

@@ -1,13 +1,14 @@
 export default function Counter(greetingDataBase) {
     async function countersRoute(req, res) {
-        const count = await greetingDataBase.getUserCount(req.params.name)
+        let name = req.params.name;
+        let count =await greetingDataBase.getUserCount(name)
         res.render('counter', {
             count: count.counter,
-            user: req.params.name
-        })
-       
+            user:name 
+        });
+    
     }
-    return {
-        countersRoute
-    }
+     return {
+            countersRoute
+        }
 }

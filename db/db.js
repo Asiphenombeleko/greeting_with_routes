@@ -12,7 +12,7 @@ export default function GreetData(db) {
         await db.none('UPDATE greettable set counter = counter+1 where name =$1', [name])
     }
     async function getCounterNames() {
-        let counter = await db.one('SELECT count(*) FROM greettable')
+        let counter = await db.any('SELECT count(*) FROM greettable')
         return counter.count;
     }
     async function userCount(name){

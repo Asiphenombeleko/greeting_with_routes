@@ -17,9 +17,9 @@ const greetingDataBase = greet(DBJS);
 //create an instance for my greet function
 let greetInstance = greet();
 
-let index_route = indexRoute(greetingDataBase, greetInstance);
-let greeted_route = greetedRoute(greetInstance);
-let counter_route = counterRoute(greetInstance);
+let index_route = indexRoute(greetingDataBase);
+let greeted_route = greetedRoute(greetingDataBase);
+let counter_route = counterRoute(greetingDataBase);
 
 app.engine(
   "handlebars",
@@ -44,16 +44,21 @@ app.use(
 );
 // session middleware
 app.use(flash());
-let index = greet();
+// let index = greet();
 
-app.get("/", index_route.makeGreeting);
-app.get("/", index_route.reset);
-app.post("/greeting", index_route.makeGreeting);
-app.get("/counter/:name", counter_route.countersRoute);
+app.get("/");
+
+app.get("/", index_route.index);
+
+app.post("/greeting", index_route.greetMessage);
+
 app.get("/greeted", greeted_route.greeted);
 
+app.get("/counter/:name", counter_route.countersRoute);
+
 app.post("/reset", index_route.reset);
-app.post('/errorHandling',  index_route.makeGreeting )
+
+ app.post('/errorHandling', index_route.index)
 
 const PORT = process.env.PORT || 3011;
 app.listen(PORT, function () {
