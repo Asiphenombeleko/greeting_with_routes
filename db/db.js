@@ -5,7 +5,7 @@ export default function GreetData(db) {
         let nameCheck = await db.oneOrNone('SELECT * FROM greettable where name = $1', [name])
         return nameCheck
     }
-    async function insertName(name, counter) {
+    async function insertName(name) {
         await db.none('INSERT into greettable (name ,counter)values ($1, $2)', [name, 1])
     }
     async function update(name) {

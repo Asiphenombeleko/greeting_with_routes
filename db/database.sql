@@ -1,2 +1,3 @@
-CREATE TABLE users(    username VARCHAR(100) PRIMARY KEY
+CREATE TABLE greettable(    name VARCHAR(100) ,
+counter int not null
 );
