@@ -6,7 +6,6 @@ export default function greet(db) {
   let nameRegex = /^[a-zA-Z\s]+$/;
   let greetMe = "";
   let userNames = {};
-  // let theCounter = 0;
 
   async function makeGreet(names, languages) {
     if (nameRegex) {
@@ -84,18 +83,13 @@ export default function greet(db) {
     }
     return message;
   }
-  // function counter() {
-  //   if (greetMe) {
-  //   }
-  // }
-
+ 
   return {
     makeGreet,
     namesGreeted,
     reset,
     errorHandling,
     getGreetings,
-    // counter,
     getNameCounter,
     getUserCount,
     nameList,

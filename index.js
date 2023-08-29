@@ -41,7 +41,6 @@ app.use(
 );
 // session middleware
 app.use(flash());
-// let index = greet();
 
 app.get("/");
 

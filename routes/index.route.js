@@ -2,7 +2,6 @@ export default function GreetRoute(greetingDataBase) {
     async function index(req, res, next) {
         let counter = await greetingDataBase.getNameCounter()
         let errorMesg = req.flash("error")[0];
-        // let greetMesg = req.flash("info")[0]
         let success = req.flash("reset")[0]
         let showGreet = !errorMesg;
         let greetMessage = greetingDataBase.getGreetings()
@@ -31,9 +30,7 @@ export default function GreetRoute(greetingDataBase) {
         res.redirect("/")
 
     }
-    // async function errors(){
 
-    // }
     return {
         index,
         reset,

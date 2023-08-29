@@ -27,7 +27,7 @@ describe('GreetData Module', function () {
 
     const nameCheck = await greeting.checkName(name);
     assert.deepEqual(nameCheck.name, 'John');
-    // assert.deepStrictEqual(nameCheck[0].counter, 1);
+    
   });
 
   it('should update the counter for an existing name', async function () {
