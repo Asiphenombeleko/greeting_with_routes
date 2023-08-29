@@ -14,9 +14,6 @@ const app = express();
 //create an instance for my database function
 const greetingDataBase = greet(DBJS);
 
-//create an instance for my greet function
-let greetInstance = greet();
-
 let index_route = indexRoute(greetingDataBase);
 let greeted_route = greetedRoute(greetingDataBase);
 let counter_route = counterRoute(greetingDataBase);

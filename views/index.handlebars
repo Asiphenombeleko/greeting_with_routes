@@ -10,8 +10,6 @@
     <div class="container">
       <h1>Greeting App</h1>
 
-      <span>{{count}}</span>
-
       <form method="POST" action="/greeting">
         <label for="name">Enter Name:</label>
         <input type="text" id="name" name="name" />
@@ -62,7 +60,7 @@
             <p class="reset-message">{{resetMesg}}</p>
           </h5>{{/if}}
         <div class="counter">
-          <h2>{{counting}}</h2>
+          <h2>{{count}}</h2>
         </div>
       </div>
       <div class="names">

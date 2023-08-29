@@ -55,11 +55,11 @@ export default function greet(db) {
 
   async function getNameCounter() {
     let counter = await greetingDataBase.getCounterNames();
-    console.log(counter);
+    return counter
   }
 
   async function getUserCount(name) {
-    let count = await greetingDataBase.userCount();
+    let count = await greetingDataBase.userCount(name);
     return count;
   }
   async function nameList() {
