@@ -34,7 +34,13 @@
         >Reset</button>
       </form>
       <div>
-        
+        <script>
+          // Clear the error message after 3 seconds 
+          setTimeout(function () {
+          document.querySelector('.greeting-message').style.display = 'none'; },
+          3000);
+        </script>
+
         <h3 class="greeting-message">{{makeGreet}}</h3>
       </div>
       <div>
