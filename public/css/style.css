@@ -3,7 +3,7 @@
     justify-content: center;
 } */
 .button {
-  background-color: #3498db;
+  background-color: #f0f8fe;
   border: none;
   color: rgb(12, 12, 12);
   text-align: center;
@@ -42,7 +42,7 @@ button {
   padding: 0.25rem 0.5rem;
 }
 body {
-  background-image: url("https://i.pinimg.com/originals/b4/d2/16/b4d216c7394cc6d31486909d845e281b.jpg");
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/914/901/280/background-beautiful-beauty-degradation-wallpaper-preview.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Arial, sans-serif;
@@ -50,10 +50,10 @@ body {
   text-align: center;
 }
 a{
-  color: black;
+  color: rgb(0, 0, 0);
 }
 .container {
-  background-image: url("https://i.pinimg.com/originals/b4/d2/16/b4d216c7394cc6d31486909d845e281b.jpg");
+  background-image: url("https://i.stack.imgur.com/GX0Ll.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
