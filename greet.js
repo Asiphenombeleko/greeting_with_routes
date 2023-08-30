@@ -30,13 +30,13 @@ export default function greet(db) {
     return greetMe;
   }
 
-  async function namesGreeted(name) {
+  async function namesGreeted(name, languages) {
     let nameValidation = nameRegex.test(name);
     if (nameValidation) {
       //this line of code checks the name the user input and see if it passes the regex test
       let nameCheck = await greetingDataBase.checkName(name);
       //here i check if the name =null is true then i should insert the name
-      if (nameCheck == null) {
+      if (nameCheck == null && languages) {
         await greetingDataBase.insertName(name, 1);
       }
       //else if it is not null i should update the counter of the name buy adding 1 each time it gets the name again
