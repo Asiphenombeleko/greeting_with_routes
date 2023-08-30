@@ -13,7 +13,7 @@ export default function greet(db) {
       let newName = names.slice(1).toLowerCase();
       let newNames = named + newName;
       
-     await namesGreeted(newNames);
+     await namesGreeted(newNames,languages);
 
       if (languages === "english") {
         greetMe = "Hello " + newNames;
